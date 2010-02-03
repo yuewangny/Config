@@ -1,0 +1,102 @@
+# Conky, a system monitor, based on torsmo
+#
+# Any original torsmo code is licensed under the BSD license
+#
+# All code written since the fork of torsmo is licensed under the GPL
+#
+# Please see COPYING for details
+#
+# Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+# Copyright (c) 2005-2009 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+# All rights reserved.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+update_interval 4.0
+background yes
+out_to_console no
+out_to_stderr no
+total_run_times 0
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+draw_shades no
+draw_outline no
+draw_borders no
+border_width 1
+double_buffer yes
+stippled_borders 1
+no_buffers yes
+alignment top_left
+gap_x 5
+gap_y 20
+use_spacer none
+minimum_size 300,800
+maximum_width 300
+
+use_xft yes
+xftfont Monaco:size=10
+xftalpha 0.1
+uppercase no
+default_color white
+default_shade_color white
+default_outline_color black
+
+draw_graph_borders no
+show_graph_scale no
+show_graph_range no
+
+cpu_avg_samples 2
+top_cpu_separate false
+max_port_monitor_connections 5
+net_avg_samples 2
+
+mpd_host 127.0.0.1
+mpd_port 6600
+top_name_width 10
+
+
+
+TEXT
+${voffset 30}${font Poky:size=15}d${font}${font Monaco:size=10} ${time %b %d %a}
+${offset 70}${font Monaco:style=Bold:size=40}${color DodgerBlue}${time %k}${color}:${time %M}${font}
+
+${execi 3600 python ~/scripts/conkyForecast.py --location=CHXX0008 --datatype=CN}
+${offset 80}${font Weather:size=80}${color DodgerBlue}${execi 3600 python ~/scripts/conkyForecast.py --location=CHXX0008 --datatype=WF}${font}${color}
+${voffset -20}${offset 60}${execi 3600 python ~/scripts/conkyForecast.py --location=CHXX0008 --datatype=CC}${offset 10}${execi 3600 python ~/scripts/conkyForecast.py --location=CHXX0008 --datatype=HT}${offset 10}${execi 3600 python ~/scripts/conkyForecast.py --location=CHXX0008 --datatype=WS} ${font Arrows:size=10}${execi 3600 python ~/scripts/conkyForecast.py --location=CHXX0008 --datatype=BF}$font
+${offset 60}Sol: ${color}${execi 3600 python ~/scripts/conkyForecast.py --location=CHXX0008 --datatype=SR}-${execi 3600 python ~/scripts/conkyForecast.py --location=CHXX0008 --datatype=SS}
+#${offset 60}${font Weather:size=44}${execi 3600 python ~/scripts/conkyForecast.py --location=CHXX0008 --datatype=WF --startday=1 --endday=2 --spaces=1}${font}
+#${offset 60}${execi 3600 python ~/scripts/conkyForecast.py --location=CHXX0008 --datatype=HT --startday=1 --endday=2 --spaces=11}
+${font Poky:size=15}x${font} System $stippled_hr
+${offset 3}${font OpenLogos:size=16}${color DodgerBlue}B${color}${font} Kernel: ${alignr}${kernel}
+${offset 3}${font StyleBats:size=16}q${font} Activated: ${alignr}${uptime}
+${voffset 3}${font Poky:size=10}${offset 8}s${font} CPU: ${alignr}$acpitemp°C
+${font Poky:size=15}a${font} Process $stippled_hr 
+${offset 30}Processes:$color $processes  Running: $running_processes
+${voffset 4}${offset 30}Process    PID   CPU%  MEM%
+${offset 30}${color DodgerBlue}${top name 1}${top pid 1}${top cpu 1}${top mem 1}${color}
+${offset 30}${color #ffffff}${top name 2}${top pid 2}${top cpu 2}${top mem 2}
+${offset 30}${top name 3}${top pid 3}${top cpu 3}${top mem 3}
+${font Poky:size=15}f${font} Disk $stippled_hr
+${voffset 4}${offset 3}${font Pie charts for maps:size=14}7${font}${voffset -3} Root:
+${voffset 4}${offset 30}${color DodgerBlue}${fs_used /}${color}/${fs_size /} ${alignr}${color DodgerBlue}${fs_bar 8,60 /}${color}
+${voffset 4}${offset 3}${font Pie charts for maps:size=14}7${font}${voffset -3} Home:
+${voffset 4}${offset 30}${color DodgerBlue}${fs_used /home}${color}/${fs_size /home} ${alignr}${color DodgerBlue}${fs_bar 8,60 /home}${color}
+${voffset 10}${font Poky:size=15}w${font} Network $stippled_hr
+${offset 3}${voffset 3}${font PizzaDude Bullets:size=12}O${font} Up: ${upspeed eth0} kb/s ${alignr}${color DodgerBlue}${upspeedgraph eth0 8,60}${color}
+${offset 3}${voffset 3}${font PizzaDude Bullets:size=12}U${font} Down: ${downspeed eth0} kb/s ${alignr}${color DodgerBlue}${downspeedgraph eth0 8,60}${color}
+${offset 3}${voffset 3}${font PizzaDude Bullets:size=12}N${font} Upload: ${alignr}${totalup eth0}
+${offset 3}${voffset 3}${font PizzaDude Bullets:size=12}T${font} Download: ${alignr}${totaldown eth0}
+${offset 3}${voffset 3}${font PizzaDude Bullets:size=12}a${font} Ip Local: ${alignr}${addr eth0}

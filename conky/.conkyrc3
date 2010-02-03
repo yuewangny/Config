@@ -1,0 +1,78 @@
+# Conky, a system monitor, based on torsmo
+#
+# Any original torsmo code is licensed under the BSD license
+#
+# All code written since the fork of torsmo is licensed under the GPL
+#
+# Please see COPYING for details
+#
+# Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+# Copyright (c) 2005-2009 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+# All rights reserved.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+update_interval 4.0
+background yes
+out_to_console no
+out_to_stderr no
+total_run_times 0
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+draw_shades no
+draw_outline no
+draw_borders no
+border_width 1
+double_buffer yes
+stippled_borders 1
+no_buffers yes
+alignment top_right
+gap_x 5
+gap_y 20
+use_spacer none
+minimum_size 300,800
+maximum_width 300
+
+use_xft yes
+xftfont Monaco:size=10
+xftalpha 0.1
+uppercase no
+default_color white
+default_shade_color white
+default_outline_color black
+override_utf8_locale yes
+
+draw_graph_borders no
+show_graph_scale no
+show_graph_range no
+
+cpu_avg_samples 2
+top_cpu_separate false
+max_port_monitor_connections 5
+net_avg_samples 2
+
+mpd_host 127.0.0.1
+mpd_port 6600
+top_name_width 10
+
+
+
+TEXT
+${voffset 30}${font Poky:size=15}l${font} Music $stippled_hr
+${if_mpd_playing}${offset 30}${voffset 4}${font 文泉驿正黑:size=10.5}${mpd_smart}${font}
+${offset 30}${voffset 4}${font 文泉驿正黑:size=10.5}${mpd_album}${font}
+${offset 30}${voffset 4}${mpd_status} $mpd_elapsed/$mpd_length
+${endif}

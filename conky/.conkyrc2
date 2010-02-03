@@ -1,0 +1,48 @@
+update_interval 4.0
+background yes
+out_to_console no
+total_run_times 0
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+draw_shades no
+draw_outline no
+draw_borders no
+border_margin 4
+border_width 1
+double_buffer yes
+no_buffers yes
+alignment bottom_right
+gap_x 0
+gap_y 0
+use_spacer none
+minimum_size 508 491
+maximum_width 508
+
+use_xft yes
+xftfont Bitstream Vera Sans Mono:size=10
+xftalpha 0.1
+uppercase no
+default_color white
+default_shade_color white
+default_outline_color black
+
+draw_graph_borders no
+show_graph_scale no
+show_graph_range no
+
+
+cpu_avg_samples 2
+net_avg_samples 1
+
+TEXT
+${offset 295}${voffset 60}${font size=12}RAM  $memperc%
+${offset 285}${voffset 20}${color DodgerBlue}${membar 10,100}${color}
+${offset 295}${voffset 80}${font size=10j}Swap
+${offset 310}${voffset 10}$swapperc%
+${offset 100}${voffset 50}${font size=14}CPU Freq:${freq} MHz
+${offset 80}${voffset 35}CPU Usage: $cpu% ${color DodgerBlue}${cpubar 10,70}${color}
+${offset 420}${voffset -30}${font size=10}$acpiacadapter
+${offset 425}${voffset 4}$battery_percent%
+${image /home/pipitu/Pictures/conky/background.png  -p 0,0 -s 508x491}
