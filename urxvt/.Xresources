@@ -1,0 +1,27 @@
+!! RXVT setting
+URxvt.background:black
+URxvt.foreground:white
+URxvt.geometry: 90x25
+URxvt.colorBD:yellow
+URxvt.colorUL:white
+URxvt.cursorColor:white
+URxvt.color0:black
+URxvt.color1:red3
+URxvt.color2:springgreen
+URxvt.color3:wheat3
+URxvt.color4:navy
+URxvt.color5:magenta4
+URxvt.color6:steelblue1
+URxvt.color7:gray85
+URxvt.color8:gray10
+URxvt.color9:orangered2
+URxvt.color10:chartreuse3
+URxvt.color11:lightgoldenrod2
+URxvt.color12:skyblue1
+URxvt.color13:pink1
+URxvt.color14:lightblue1
+URxvt.scrollBar:False
+URxvt.saveLines:3000
+URxvt.font:xft:Monaco-13,xft:WenQuanYi Bitmap Song-13
+URxvt.boldFont:xft:Monaco-13:Bold,xft:WenQuanYi Bitmap Song-13:Bold
+URxvt.preeditType:Root

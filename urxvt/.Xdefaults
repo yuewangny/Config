@@ -1,0 +1,21 @@
+urxvt.transparent: true
+urxvt.jumpScroll: false
+urxvt.foreground: white
+urxvt.geometry: 120x30
+urxvt.scrollBar: false
+urxvt.borderLess: false
+urxvt.mouseWheelScrollPage: true
+urxvt.cursorBlink: true
+urxvt.pointerBlank: true
+urxvt.externalBorder:0
+
+rxvt-unicode.transparent: true
+rxvt-unicode.jumpScroll: false
+rxvt-unicode.foreground: white
+rxvt-unicode.geometry: 120x30
+rxvt-unicode.scrollBar: false
+rxvt-unicode.borderLess: false
+rxvt-unicode.mouseWheelScrollPage: true
+rxvt-unicode.cursorBlink: true
+rxvt-unicode.pointerBlank: true
+rxvt-unicode.externalBorder:0
