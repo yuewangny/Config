@@ -3,12 +3,13 @@ syntax enable
 colorscheme candy
 
 set nocompatible
+set modelines=0
 set autoindent
 
 set history=50
 set ruler
 set showcmd
-set incsearch
+
 
 "Don't use Ex mode,use Q for formatting
 map Q gq
@@ -17,9 +18,60 @@ set encoding=utf-8
 nnoremap <F12> :e ++enc=gbk
 
 set visualbell
-set expandtab
+
+"indent settings
+set expandtab 
 set tabstop=4
 set shiftwidth=4
+set softtabstop=4
+set smartindent
+set cindent
+set scrolloff=3
+set showmode
+set hidden
+set wildmenu
+set wildmode=list:longest
+set visualbell
+set cursorline
+set ttyfast
+set ruler
+set backspace=indent,eol,start
+set relativenumber
+set laststatus=2
+set undofile
+
+let mapleader = ","
+
+nnoremap / /\v
+vnoremap / /\v
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+set showmatch
+set gdefault
+map <leader><space> :noh<cr>
+nmap <tab> %
+vmap <tab> %
+
+" Soft/hard wrapping
+set wrap
+set textwidth=79
+set formatoptions=qrn1
+set colorcolumn=85
+
+nnoremap j gj
+nnoremap k gk
+
+" inoremap jj <Esc>`^ 
+
+au FocusLost * :wa
+
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+map <leader>w <C-w>v<C-w>l
 
 " Minibuf
 let g:miniBufExplMapCTabSwitchBufs = 1
@@ -35,8 +87,8 @@ set winminheight=0      " Allow windows to get fully squashed
 "
 "" Switch between windows, maximizing the current window
 "
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_ 
+" map <C-J> <C-W>j<C-W>_
+" map <C-K> <C-W>k<C-W>_ 
 
 
 " taglist
@@ -46,6 +98,10 @@ let Tlist_Auto_Open=1
 
 " Pylint
 let g:pylint_onwrite=0
+
+" Latex
+filetype plugin on
+set grepprg=grep\ -nH\ $*
 
 
 " CScope
@@ -105,5 +161,13 @@ function ClosePair(char)
         return a:char
     endif
 endf
+
+function! Browser ()
+    let line = getline (".")
+    let line = matchstr (line, "\%(http://\|www\.\)[^ ,;\t]*")
+    exec "!firefox ".line
+endfunction
+map <Leader>w :call Browser ()<CR>
+
 
 set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
